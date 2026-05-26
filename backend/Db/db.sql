@@ -12,7 +12,6 @@ TABLE urls(
     created_at TIMESTAMP,
     expires_at TIMESTAMP,
     click_count INT
-
 );
 
 TABLE user_clicks(

@@ -5,6 +5,7 @@ const codeLength = 6;
 const shortenUrl = asyncHandler(async(req,res)=>{
     const originUrl = req.body.url;
     const shortcode =   await createShortUrl(codeLength);
+    await db.query("INSERT INTO urls (original_url, short_code) VALUES (?, ?)", [originUrl, shortcode]);
     return {shortUrl:"https://bit.ly/"+shortcode};
 })
 
