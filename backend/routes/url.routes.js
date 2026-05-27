@@ -1,10 +1,16 @@
 import { Router } from 'express';
-import { shortenUrl } from '../controllers/url.contoller';
-
-
+import { shortenUrl, redirection, getUrlAnalytics } from '../controllers/url.contoller.js';
+import { tokenBucketRateLimiter, leakyBucketRateLimiter } from '../middleware/rateLimiter.js';
 
 const router = Router();
 
-router.route('/shorten').post(shortenUrl);
-router.route('/:shortCode').get(redirection);
+// Endpoint to shorten a URL - Rate-limited by Token Bucket (daily limits)
+router.route('/shorten').post(tokenBucketRateLimiter({ capacity: 100 }), shortenUrl);
 
+// Endpoint to redirect from short code - Rate-limited by Leaky Bucket (traffic smoothing)
+router.route('/:shortCode').get(leakyBucketRateLimiter({ capacity: 20, leakRate: 5 }), redirection);
+
+// Endpoint to view URL analytics
+router.route('/analytics/:shortCode').get(getUrlAnalytics);
+
+export default router;
