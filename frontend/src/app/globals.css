@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f4f1ea;
+  --foreground: #1e1f1a;
+  
+  --sage-50: #f6f7f5;
+  --sage-100: #e9ece8;
+  --sage-200: #d5dcd3;
+  --sage-300: #b5c4b9;
+  --sage-400: #93a99a;
+  --sage-500: #748e7d;
+  --sage-600: #5c7464;
+  
+  --gold-300: #d4af37;
+  --gold-400: #c5a059;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-serif);
+  
+  --color-sage-50: var(--sage-50);
+  --color-sage-100: var(--sage-100);
+  --color-sage-200: var(--sage-200);
+  --color-sage-300: var(--sage-300);
+  --color-sage-400: var(--sage-400);
+  --color-sage-500: var(--sage-500);
+  --color-sage-600: var(--sage-600);
+  
+  --color-gold-300: var(--gold-300);
+  --color-gold-400: var(--gold-400);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), sans-serif;
+  overflow-x: hidden;
+}
+
+/* Structural Grids */
+.editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+
+/* Halftone overlay pattern (simulating renaissance printing style) */
+.halftone-overlay {
+  background-image: radial-gradient(rgba(30, 31, 26, 0.15) 1px, transparent 0);
+  background-size: 8px 8px;
+}
+
+.halftone-overlay-light {
+  background-image: radial-gradient(rgba(30, 31, 26, 0.05) 1.5px, transparent 0);
+  background-size: 12px 12px;
+}
+
+/* Frame effects */
+.art-border {
+  border: 1px solid rgba(30, 31, 26, 0.15);
+}
+
+.art-border-strong {
+  border: 1px solid rgba(30, 31, 26, 0.4);
+}
